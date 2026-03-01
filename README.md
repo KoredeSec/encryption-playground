@@ -4,7 +4,7 @@ An interactive, browser-based tool for exploring encryption algorithms with real
 
 I built this out of boredom while studying — wanted a hands-on way to understand how different encryption algorithms actually work under the hood.
 
-🌐 **[Live Demo → encryption-playground-ebon.vercel.app](https://encryption-playground-ebon.vercel.app/)**
+🌐 **[Live Demo → tep-playground.vercel.app](https://tep-playground.vercel.app/)**
 
 ---
 
