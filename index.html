@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Tory's Encryption Playground — An interactive tool for exploring encryption algorithms with real-time visualization.">
+  <title>Tory's Encryption Playground</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+</head>
+<body>
+
+  <!-- Background Orbs -->
+  <div class="bg-orb bg-orb-1"></div>
+  <div class="bg-orb bg-orb-2"></div>
+  <div class="bg-orb bg-orb-3"></div>
+
+  <div class="app-container">
+
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header-title">
+        <span class="header-icon">🔐</span>Tory's Encryption Playground
+      </h1>
+      <p class="header-subtitle">Explore ciphers &amp; see how encryption works, step by step</p>
+    </header>
+
+    <!-- Algorithm Tabs -->
+    <nav class="algo-tabs" id="algoTabs">
+      <button class="algo-tab active" data-algo="caesar">
+        <span class="tab-icon">🔄</span>Caesar
+      </button>
+      <button class="algo-tab" data-algo="vigenere">
+        <span class="tab-icon">🔑</span>Vigenère
+      </button>
+      <button class="algo-tab" data-algo="rot13">
+        <span class="tab-icon">🔃</span>ROT13
+      </button>
+      <button class="algo-tab" data-algo="base64">
+        <span class="tab-icon">📦</span>Base64
+      </button>
+      <button class="algo-tab" data-algo="aes">
+        <span class="tab-icon">🛡️</span>AES-256
+        <span class="tab-badge">GCM</span>
+      </button>
+      <button class="algo-tab" data-algo="sha256">
+        <span class="tab-icon">🧬</span>SHA-256
+        <span class="tab-badge">Hash</span>
+      </button>
+    </nav>
+
+    <!-- Mode Toggle -->
+    <div class="mode-toggle-container">
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="btnEncrypt" data-mode="encrypt">🔒 Encrypt</button>
+        <button class="mode-btn" id="btnDecrypt" data-mode="decrypt">🔓 Decrypt</button>
+      </div>
+    </div>
+
+    <!-- Workspace -->
+    <div class="workspace">
+
+      <!-- Input Panel -->
+      <section class="panel" id="inputPanel">
+        <div class="panel-header">
+          <span class="panel-title"><span class="panel-icon">✏️</span> Input</span>
+        </div>
+        <div class="panel-body">
+          <textarea
+            class="input-textarea"
+            id="inputText"
+            placeholder="Type or paste your text here..."
+            spellcheck="false"
+          ></textarea>
+
+          <!-- Caesar shift slider -->
+          <div class="key-input-group shift-slider-group" id="caesarControls">
+            <label>
+              <span>Shift Amount</span>
+              <span class="shift-value" id="shiftDisplay">3</span>
+            </label>
+            <input type="range" class="shift-slider" id="shiftSlider" min="1" max="25" value="3">
+          </div>
+
+          <!-- Vigenère key input -->
+          <div class="key-input-group" id="vigenereControls" style="display:none;">
+            <label for="vigenereKey">Encryption Key</label>
+            <input type="text" class="key-input" id="vigenereKey" placeholder="Enter a keyword (e.g. SECRET)" spellcheck="false">
+          </div>
+
+          <!-- AES password input -->
+          <div class="key-input-group" id="aesControls" style="display:none;">
+            <label for="aesPassword">Password</label>
+            <input type="password" class="key-input" id="aesPassword" placeholder="Enter a strong password">
+          </div>
+        </div>
+      </section>
+
+      <!-- Output Panel -->
+      <section class="panel" id="outputPanel">
+        <div class="panel-header">
+          <span class="panel-title"><span class="panel-icon">📤</span> Output</span>
+          <button class="copy-btn" id="copyBtn" title="Copy to clipboard">
+            <span id="copyIcon">📋</span>
+            <span id="copyLabel">Copy</span>
+          </button>
+        </div>
+        <div class="panel-body">
+          <textarea
+            class="output-textarea"
+            id="outputText"
+            readonly
+            placeholder="Result will appear here..."
+          ></textarea>
+        </div>
+      </section>
+
+      <!-- Visualization Panel -->
+      <section class="panel viz-panel" id="vizPanel">
+        <div class="panel-header">
+          <span class="panel-title"><span class="panel-icon">⚡</span> Step-by-Step Visualization</span>
+        </div>
+        <div class="panel-body">
+          <div class="viz-container" id="vizContainer">
+            <div class="viz-empty">Type something to see how the algorithm transforms your data</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Algorithm Info -->
+      <div class="algo-info" id="algoInfo">
+        <div class="algo-info-title" id="algoInfoTitle">Caesar Cipher</div>
+        <div class="algo-info-desc" id="algoInfoDesc">
+          One of the oldest known ciphers, used by Julius Caesar. Each letter is shifted by a fixed number of positions in the alphabet.
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="crypto.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
